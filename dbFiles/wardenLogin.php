@@ -1,7 +1,6 @@
 <?php
 
     require('../dbConn.php');
-    require('../dbConn.php');
 
     if(isset($_POST['login'])) {
         $Eid = $_POST['username'];
