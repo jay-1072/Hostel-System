@@ -19,7 +19,7 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav mx-auto">
 						<li class="nav-item mx-2">
-							<a class="nav-link" aria-current="page" href="Dashboard.php">Dashboard</a>
+							<a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
 						</li>
 						<li class="nav-item mx-2">
 							<a class="nav-link active" href="#">Requests (0)</a>
@@ -34,31 +34,35 @@
 				</div>
 			</div>
 		</nav>
-		<table class="table table-hover mt-3">
-			<thead>
-				<tr>
-					<th scope="col">Hostel Name</th>
-					<th scope="col">Room Number</th>
-					<th scope="col">Enrollment Number</th>
-					<th scope="col">Name</th>
-					<th scope="col">Branch</th>
-					<th scope="col">Semester</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">Boys Hostel 1</th>
-					<td>1101</td>
-					<td>190170116000</td>
-					<td>Xyz</td>
-					<td>IT</td>
-					<td>6</td>
-					<td><a href="feesAction.php">More</a></td>
-				</tr>
-			</tbody>
-		</table>
-
+		<div class="container">
+			<h3 class="text-center mt-5 mb-2 text-danger">Remaining to check the fees details</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover mt-3">
+					<thead>
+						<tr>
+							<th scope="col">Hostel Name</th>
+							<th scope="col">Room Number</th>
+							<th scope="col">Enrollment Number</th>
+							<th scope="col">Name</th>
+							<th scope="col">Branch</th>
+							<th scope="col">Semester</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Boys Hostel 1</th>
+							<td>1101</td>
+							<td>190170116000</td>
+							<td>Xyz</td>
+							<td>IT</td>
+							<td>6</td>
+							<td><a href="feesAction.php" class="text-decoration-none">More</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 		<p>To do: when the warden is approve or reject the fees details it will be removed from here</p>
 		<?php
 		include("footer.php");

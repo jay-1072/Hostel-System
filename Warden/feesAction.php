@@ -52,7 +52,7 @@
 				<label for="formFile" class="form-label">Uploded PDF</label>
 				<input class="form-control" type="file" id="formFile" disabled>
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-4 mt-5">
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
 					<label class="form-check-label" for="inlineRadio1">Approve</label>
@@ -73,7 +73,7 @@
 				</a>
 			</div>
 		</form>
-		<P>To do: After the form submit the page redirect to request.php and the notification will go to student if possible </P>
+		<P>To do: After the form submit the page redirect to request.php and the notification will go to student if possible <br> Check the uplode file</P>
 		<?php
 		include("footer.php");
 		?>
