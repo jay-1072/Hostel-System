@@ -79,51 +79,53 @@ include("../dbConn.php");
                 $data = $spreadsheet->getActiveSheet()->toArray();
                 $data = array_slice($data, 1);
 
-                // $sql = "DELETE FROM `hostel_student_details`";
-                // $res1 = mysqli_query($conn, $sql);
-                // $sql = "DELETE FROM `fees`";
-                // $res2 = mysqli_query($conn, $sql);
+                if (isset($_POST['permission'])) {
+                    $sql = "DELETE FROM `hostel_student_details`";
+                    $res1 = mysqli_query($conn, $sql);
+                    $sql = "DELETE FROM `fees`";
+                    $res2 = mysqli_query($conn, $sql);
 
-                // if ($res1 && $res2) {
-                    // create sql statement template
-                    $sql = "INSERT INTO `hostel_student_details`(`enrollment_no`, `hostel_name`, `room_no`, `occupancy_date`, `release_date`) VALUES (?,?,?,'','')";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ssi", $enrollment_no, $_POST['hostel'], $room_no);
-
-                    foreach ($data as $row) {
-                        $enrollment_no = $row[6];
-                        $room_no = $row[14];
-                        $res = $stmt->execute();
+                    if (!$res1 && !$res2) {
+                        echo "
+                        <div class='alert alert-danger alert-dismissible fade show mx-sm-5 px-md-5' role='alert'>
+                            <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
+                            <strong>Oops! </strong>" . mysqli_error($conn)
+                            . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
                     }
+                }
 
-                    $sql = "INSERT INTO `fees`(`enrollment_no`, `semester`, `hostel_name`, `amount_paid`, `penalty`, `payment_date`, `DU_reference_no`, `receipt`, `status`, `remarks`) VALUES (?,?,?,?,0,?,?,?,?,?)";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("sisisssss", $enrollment_no, $semester, $_POST['hostel'], $amount_paid, $payment_date, $DU_reference_no, $receipt, $status, $remarks);
-                    foreach ($data as $row) {
-                        $enrollment_no = $row[6];
-                        $semester = $row[8];
-                        $amount_paid = $row[4];
-                        $payment_date = $row[3];
-                        $DU_reference_no = $row[2];
-                        $receipt = "";
-                        $status = "";
-                        $remarks = $row[21];
-                        $res = $stmt->execute();
-                    }
+                // create sql statement template
+                $sql = "INSERT INTO `hostel_student_details`(`enrollment_no`, `hostel_name`, `room_no`, `occupancy_date`, `release_date`) VALUES (?,?,?,'','')";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ssi", $enrollment_no, $_POST['hostel'], $room_no);
 
-                    echo "
+                foreach ($data as $row) {
+                    $enrollment_no = $row[6];
+                    $room_no = $row[14];
+                    $res = $stmt->execute();
+                }
+
+                $sql = "INSERT INTO `fees`(`enrollment_no`, `semester`, `hostel_name`, `amount_paid`, `penalty`, `payment_date`, `DU_reference_no`, `receipt`, `status`, `remarks`) VALUES (?,?,?,?,0,?,?,?,?,?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sisisssss", $enrollment_no, $semester, $_POST['hostel'], $amount_paid, $payment_date, $DU_reference_no, $receipt, $status, $remarks);
+                foreach ($data as $row) {
+                    $enrollment_no = $row[6];
+                    $semester = $row[8];
+                    $amount_paid = $row[4];
+                    $payment_date = $row[3];
+                    $DU_reference_no = $row[2];
+                    $receipt = "";
+                    $status = "";
+                    $remarks = $row[21];
+                    $res = $stmt->execute();
+                }
+
+                echo "
                     <div class='alert alert-success alert-dismissible fade show mx-sm-5 px-md-5' role='alert'>
                         Your data is successfully saved!
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>";
-                // } else {
-                //     echo "
-                //         <div class='alert alert-danger alert-dismissible fade show mx-sm-5 px-md-5' role='alert'>
-                //             <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Danger:'><use xlink:href='#exclamation-triangle-fill'/></svg>
-                //             <strong>Oops! </strong>" . mysqli_error($conn)
-                //         . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                //         </div>";
-                // }
             } else {
                 echo "
                     <div class='alert alert-danger alert-dismissible fade show mx-sm-5 px-md-5' role='alert'>
@@ -149,6 +151,10 @@ include("../dbConn.php");
             <div class="mb-3">
                 <input class="form-control" type="file" name="file" id="fileForm" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                 <div id="fileForm" class="form-text">The file must be in .xls,.csv or .xlsx format</div>
+            </div>
+            <div class="mb-3">
+                <input type="checkbox" class="mx-2" name="permission" id="permission">
+                <label for="permission">Do you want to delete previous data-base?</label>
             </div>
             <input type="submit" name="submit" class="form-control btn btn-success">
         </form>
