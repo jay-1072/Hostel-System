@@ -32,10 +32,10 @@
 			<div class="card mx-auto shadow-sm" style="width: 18rem;" >
 				<div class="card-body ">
 					<form method="POST" action="">
-						<h5 class="card-title text-center">Sign In</h5>
+						<h5 class="card-title text-center">Change the Password</h5>
 						<div class="textbox mx-2 my-2">
 							<!--<input class="my-3 w-100 px-2 py-2 bg-white text-dark border border-1" type="text" name="username" placeholder="Username">-->
-							<select class="form-select my-3 w-100 px-2 py-2 bg-white text-dark border border-1" aria-label="Default select example">
+							<select class="form-select mt-4 my-3 w-100 px-2 py-2 bg-white text-dark border border-1" aria-label="Default select example">
 								<option value="" selected>Username
 								</option>
 								<option value="Prof. Navin Ganeshan">Prof. Navin Ganeshan
@@ -51,20 +51,20 @@
 								<option value="Prof. Sita S. Agrawal">Prof. Sita S. Agrawal
 								</option>
 							</select>
-							<input class="my-3 w-100 px-2 py-2 bg-white text-dark border border-1" type="text" name="password" placeholder="Password">
+							<input type="email" class=" my-3 w-100 px-2 py-2 bg-white text-dark border border-1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email Id">
 						</div>
-						<div class="loginbutton mx-2 my-2">
-							<input style="background-color: #70a7ff;" class="fw-bold w-100 my-3 rounded-pill border-0 py-2" type="button" name="" class="button" value="Login">
+						<div class="sendbutton mx-2 my-2">
+							<input style="background-color: #70a7ff;" class="fw-bold w-100 my-3 rounded-pill border-0 py-2" type="button" name="" class="button" value="Send New Password">
 						</div>
-						<div class="forgotPass mx-2 my-2 text-end">
-							<a class="border-0 text-decoration-none " href="forgotPassword.php" id="forgot-link">Forgot Password?</a>
+						<div class="back mx-2 my-2 text-end">
+							<a class="border-0 text-decoration-none " href="loginPage.php" id="back-link">Back</a>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<?php
-			include("footer.php");
-		?>
-	</body>
+	<?php
+		include("footer.php");
+	?>
+</body>
 </html>
