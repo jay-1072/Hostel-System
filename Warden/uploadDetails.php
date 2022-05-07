@@ -1,7 +1,6 @@
 <?php
-
+include "./auth.php";
 include("../dbConn.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +21,6 @@ include("../dbConn.php");
     <!-- navabar  -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container-fluid">
-            <!--<a class="navbar-brand" href="#">Navbar</a>-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,7 +39,7 @@ include("../dbConn.php");
                         <a class="nav-link" href="report.php">Report</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="../dbFiles/logout.php">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -75,7 +73,7 @@ include("../dbConn.php");
 
             if (in_array($file_ext, $valid_ext)) {
                 $path = $_FILES['file']['tmp_name'];
-                $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path);
+                // $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path);
                 $data = $spreadsheet->getActiveSheet()->toArray();
                 $data = array_slice($data, 1);
 
