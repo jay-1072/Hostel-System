@@ -35,7 +35,7 @@ switch ($hostelName) {
 	<div class="container">
 		<h3 class="text-center mt-3 mb-2 text-primary">Hostel Details</h3>
 		<h5 class="text-center mt-3 mb-2 text-primary"><?php echo $fullHostelName; ?></h5>
-		<div class="table-responsive">
+		<div class="table-responsive my-5">
 			<table class="table table-bordered table-hover table-striped mt-3 text-center" id="myTable">
 				<thead>
 					<tr>
