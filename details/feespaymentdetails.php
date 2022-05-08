@@ -69,7 +69,7 @@ switch ($hostelName) {
 									<td>' . $row['enrollment_no'] . '</td>
 									<td>XYZ</td>
 									<td>IT</td>
-									<td>6</td>
+									<td>' . $row['semester'] . '</td>
 									<td>BE/ME</td>
 									<td>' . $row['DU_reference_no'] . '</td>
 									<td>' . $row['payment_date'] . '</td>

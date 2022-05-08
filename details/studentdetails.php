@@ -62,6 +62,8 @@ switch ($hostelName) {
 							if ($row['release_date'] == '0000-00-00') {
 								$row['release_date'] = '-';
 							}
+							// encryption of enrollment to uniquely identify for onestudentdetails
+							$encryptedMessage = openssl_encrypt($row['enrollment_no'], $encryptionAlgo, $encryptionKey, 0, $initVector);
 							echo '<tr>
 									<th scope="row">' . $row['room_no'] . '</th>
 									<td>' . $row['enrollment_no'] . '</td>
@@ -71,7 +73,7 @@ switch ($hostelName) {
 									<td>BE/ME</td>
 									<td>' . $row['occupancy_date'] . '</td>
 									<td>' . $row['release_date'] . '</td>
-									<td><a href="onestudentdetail.php" class="text-decoration-none">More</a></td>
+									<td><a href="onestudentdetail.php?eno=' . $encryptedMessage . '" class="text-decoration-none">More</a></td>
 								</tr>';
 						}
 					}
