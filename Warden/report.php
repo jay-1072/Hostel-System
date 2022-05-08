@@ -47,9 +47,9 @@
 				<p class="card-text"></p>
 			</div>
 			<ul class="list-group list-group-flush">
-				<a href="../details/hostelwisedetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
-				<a href="../details/hostelwisedetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
-				<a href="../details/hostelwisedetails.php" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
+				<a href="../details/hostelwisedetails.php?name=BH-1" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
+				<a href="../details/hostelwisedetails.php?name=BH-2" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
+				<a href="../details/hostelwisedetails.php?name=GH" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
 			</ul>
 		</div>
 		<div class="card mx-5 mb-4 border border-dark" style="width: 18rem;">
@@ -58,9 +58,9 @@
 				<p class="card-text"></p>
 			</div>
 			<ul class="list-group list-group-flush">
-				<a href="../details/occupancydetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
-				<a href="../details/occupancydetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
-				<a href="../details/occupancydetails.php" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
+				<a href="../details/occupancydetails.php?name=BH-1" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
+				<a href="../details/occupancydetails.php?name=BH-2" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
+				<a href="../details/occupancydetails.php?name=GH" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
 			</ul>
 		</div>
 		<div class="card mx-5 mb-4 border border-dark" style="width: 18rem;">
@@ -69,9 +69,9 @@
 				<p class="card-text"></p>
 			</div>
 			<ul class="list-group list-group-flush">
-				<a href="../details/vacantdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
-				<a href="../details/vacantdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
-				<a href="../details/vacantdetails.php" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
+				<a href="../details/vacantdetails.php?name=BH-1" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
+				<a href="../details/vacantdetails.php?name=BH-2" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
+				<a href="../details/vacantdetails.php?name=GH" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
 			</ul>
 		</div>
 		<!--</div>
@@ -82,9 +82,9 @@
 				<p class="card-text"></p>
 			</div>
 			<ul class="list-group list-group-flush">
-				<a href="../details/studentdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
-				<a href="../details/studentdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
-				<a href="../details/studentdetails.php" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
+				<a href="../details/studentdetails.php?name=BH-1" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
+				<a href="../details/studentdetails.php?name=BH-2" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
+				<a href="../details/studentdetails.php?name=GH" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
 			</ul>
 		</div>
 		<div class="card mx-5 mb-4 border border-dark" style="width: 18rem;">
@@ -93,9 +93,9 @@
 				<p class="card-text"></p>
 			</div>
 			<ul class="list-group list-group-flush">
-				<a href="../details/feespaymentdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
-				<a href="../details/feespaymentdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
-				<a href="../details/feespaymentdetails.php" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
+				<a href="../details/feespaymentdetails.php?name=BH-1" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
+				<a href="../details/feespaymentdetails.php?name=BH-2" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
+				<a href="../details/feespaymentdetails.php?name=GH" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
 			</ul>
 		</div>
 		<div class="card mx-5 mb-4 border border-dark" style="width: 18rem;">
@@ -104,9 +104,9 @@
 				<p class="card-text"></p>
 			</div>
 			<ul class="list-group list-group-flush">
-				<a href="../details/unpaidfeesdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
-				<a href="../details/unpaidfeesdetails.php" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
-				<a href="../details/unpaidfeesdetails.php" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
+				<a href="../details/unpaidfeesdetails.php?name=BH-1" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 1</a>
+				<a href="../details/unpaidfeesdetails.php?name=BH-2" class="list-group-item list-group-item-action list-group-item-info">Boys Hostel 2</a>
+				<a href="../details/unpaidfeesdetails.php?name=GH" class="list-group-item list-group-item-action list-group-item-info">Girls Hostel</a>
 			</ul>
 		</div>
 	</div>
