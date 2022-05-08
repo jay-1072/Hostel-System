@@ -28,7 +28,7 @@
 						<a class="nav-link active" aria-current="page" href="#">Dashboard</a>
 					</li>
 					<li class="nav-item mx-2">
-						<a class="nav-link" href="uploadDetails.php">Upload Details</a>
+						<a class="nav-link" href="uploadDetails.php">Upload Student Data</a>
 					</li>
 					<li class="nav-item mx-2">
 						<a class="nav-link" href="request.php">Requests (0)</a>
