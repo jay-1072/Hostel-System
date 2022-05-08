@@ -20,14 +20,6 @@
 					</div>
 					<div class="col order-md-1">
 						<div class="card-block px-2 mt-3 mx-3 mb-3">
-							<!--<p class="card-text"><span class="fw-bold">Branch: </span>Information Technology</p>
-							<p class="card-text"><span class="fw-bold">Semester: </span>6</p>
-							<p class="card-text"><span class="fw-bold">Course: </span>BE</p>
-							<p class="card-text"><span class="fw-bold">Student's Mobile No.: </span>1112222111</p>
-							<p class="card-text"><span class="fw-bold">Parent's Mobile No.: </span>1112222111</p>
-							<p class="card-text"><span class="fw-bold">Student's Email Id: </span>aaa@gmail.com</p>
-							<p class="card-text"><span class="fw-bold">Parent's Email Id.: </span>aaa@gmail.com</p>
-							<p class="card-text"><span class="fw-bold">Date of Birth: </span>01-01-2001</p>-->
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item"><span class="fw-bold">Hostel Name: </span>Boys Hostel 1</li>
 								<li class="list-group-item"><span class="fw-bold">Room Number: </span>1110</li>

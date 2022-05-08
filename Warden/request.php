@@ -1,3 +1,5 @@
+<?php include "./auth.php" ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +35,7 @@
 						<a class="nav-link" href="report.php">Report</a>
 					</li>
 					<li class="nav-item mx-2">
-						<a class="nav-link" href="#">Logout</a>
+						<a class="nav-link" href="../dbFiles/logout.php">Logout</a>
 					</li>
 				</ul>
 			</div>
