@@ -32,7 +32,7 @@ include("../dbConn.php");
                         <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link active" href="uploadDetails.php">Upload Details</a>
+                        <a class="nav-link active" href="uploadDetails.php">Upload Student Data</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="request.php">Requests (0)</a>
