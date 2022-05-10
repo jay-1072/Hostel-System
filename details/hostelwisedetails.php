@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 $hostelName = $_GET['name'];
@@ -37,6 +38,24 @@ switch ($hostelName) {
 		<h5 class="text-center mt-3 mb-2 text-primary"><?php echo $fullHostelName; ?></h5>
 		<div class="table-responsive my-5">
 			<table class="table table-bordered table-hover table-striped mt-3 text-center" id="myTable">
+=======
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Hostel Portal</title>
+	</head>
+	<body>
+		<?php
+		include("../warden/header.php");
+		?>
+		<hr />
+		<div class="container">
+		<h3 class="text-center mt-3 mb-2 text-primary">Hostel Details</h3>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover mt-3">
+>>>>>>> 5db2347eeaacb2b46f3194cd0250a69d58bddc5f
 				<thead>
 					<tr>
 						<th scope="col">Room Number</th>
@@ -50,6 +69,7 @@ switch ($hostelName) {
 					</tr>
 				</thead>
 				<tbody>
+<<<<<<< HEAD
 					<?php
 					include "../dbConn.php";
 					$sql = "SELECT * FROM hostel_student_details as hsd JOIN hostel_master AS hm ON hsd.room_no = hm.room_no AND hm.hostel_name = ? ORDER BY hm.room_no";
@@ -75,6 +95,18 @@ switch ($hostelName) {
 						}
 					}
 					?>
+=======
+					<tr>
+						<th scope="row">1101</th>
+						<td>190170116000</td>
+						<td>Xyz</td>
+						<td>IT</td>
+						<td>6</td>
+						<td>BE/ME</td>
+						<td></td>
+						<td></td>
+					</tr>
+>>>>>>> 5db2347eeaacb2b46f3194cd0250a69d58bddc5f
 				</tbody>
 			</table>
 		</div>
@@ -84,6 +116,7 @@ switch ($hostelName) {
 				Back
 			</a>
 		</div>
+<<<<<<< HEAD
 	</div>
 	<p>TODO : Download report remaining</p>
 	<?php
@@ -100,4 +133,12 @@ switch ($hostelName) {
 	});
 </script>
 
+=======
+		</div>
+		<p>To do: Hostel name remaining</p>
+		<?php
+		include("../warden/footer.php");
+		?>
+	</body>
+>>>>>>> 5db2347eeaacb2b46f3194cd0250a69d58bddc5f
 </html>
