@@ -19,10 +19,7 @@ if (isset($_POST['submit'])) {
 
 	if ($result->num_rows > 0) {
 		$row = $result->fetch_assoc();
-		$header = "From:ssiphostel2425@gmail.com \r\n";
-		$header .= "Cc:ssiphostel2425@gmail.com \r\n";
-		$header .= "MIME-Version: 1.0\r\n";
-		$header .= "Content-type: text/html\r\n";
+		$headers = "From: ssiphostel2425@gmail.com\r\n";
 
 		$encryptedEmail = openssl_encrypt($row['email'], $encryptionAlgo, $encryptionKey, 0, $initVector);
 
@@ -38,7 +35,9 @@ if (isset($_POST['submit'])) {
 			</html>
 		";
 
-		if (mail($row['email'], "Update password", $message, $header)) {
+		$res = mail($row['email'], "Update password", $message, $headers);
+
+		if ($res) {
 			$success = "Email has been sent on your mail id!";
 		} else {
 			$error = "Oops! Something went wrong!!!";
@@ -57,6 +56,7 @@ if (isset($_POST['submit'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Hostel Portal</title>
 	<link rel="stylesheet" type="text/css" href="../css/navbar.css">
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
 		<div class="card mx-auto shadow-sm" style="width: 18rem;">
 			<div class="card-body ">
 				<form method="POST" action=<?php echo $_SERVER['PHP_SELF']; ?>>
-					<h5 class="card-title text-center">Sign In</h5>
+					<h5 class="card-title text-center">Forget Password</h5>
 
 					<?php
 					if ($error) {
