@@ -19,7 +19,11 @@ if (isset($_POST['submit'])) {
 
 	if ($result->num_rows > 0) {
 		$row = $result->fetch_assoc();
+<<<<<<< HEAD
 		$headers = "From: ssiphostel2425@gmail.com\r\n";
+=======
+		$header = "From:ssiphostel2425@gmail.com \r\n";
+>>>>>>> e55483b17f9d65f8898e375a552356d0b7f1420c
 
 		$encryptedEmail = openssl_encrypt($row['email'], $encryptionAlgo, $encryptionKey, 0, $initVector);
 
@@ -35,9 +39,13 @@ if (isset($_POST['submit'])) {
 			</html>
 		";
 
+<<<<<<< HEAD
 		$res = mail($row['email'], "Update password", $message, $headers);
 
 		if ($res) {
+=======
+		if (mail($row['email'], "Update password", $message, "From:shubhamdusane2003@gmail.com")) {
+>>>>>>> e55483b17f9d65f8898e375a552356d0b7f1420c
 			$success = "Email has been sent on your mail id!";
 		} else {
 			$error = "Oops! Something went wrong!!!";

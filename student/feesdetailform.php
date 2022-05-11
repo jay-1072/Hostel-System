@@ -1,3 +1,7 @@
+<?php
+$enrollmentNo = '180170119023';
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,12 +19,11 @@
 	?>
 	<hr />
 	<div class="container mx-auto my-auto">
-		To Do --> status and remarks <br>
 		For enrollment 180170119023 (BH-1/1101) static data
 		<div class="row">
-			<h3 class="text-center mt-3 mb-2 text-primary">Payment History</h3>
+			<h3 class="text-center my-4 mb-2 text-primary">Payment History</h3>
 			<div class="table-responsive">
-				<table class="table table-bordered text-center table-hover mt-3 align-middle my-5" id="myTable">
+				<table class="table table-bordered text-center table-striped table-hover mt-3 align-middle" id="myTable">
 					<thead>
 						<tr class="">
 							<th>Semester</th>
@@ -34,25 +37,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td>Approve / Reject</td>
-							<td></td>
-						</tr>
 						<?php
 						include "../dbConn.php";
-						$sql = "SELECT * FROM fees WHERE enrollment_no = '180170119023'";
+						$sql = "SELECT * FROM fees WHERE enrollment_no = ?";
 						$stmt = $conn->prepare($sql);
-						// $stmt->bind_param("s", $hostelName);
+						$stmt->bind_param("s", $enrollmentNo);
 						$stmt->execute();
 						$result = $stmt->get_result();
 						if ($result->num_rows > 0) {
+							$fontColor;
 							while ($row = $result->fetch_assoc()) {
+								($row['status'] == 'Approved') ? $fontColor = 'green' : $fontColor = 'red';
 								echo '<tr>
 										<td>' . $row['semester'] . '</td>
 										<td>' . $row['DU_reference_no'] . '</td>
@@ -60,7 +55,7 @@
 										<td>' . $row['amount_paid'] . '</td>
 										<td>' . $row['penalty'] . '</td>
 										<td>Receipt</td>
-										<td>' . $row['status'] . '</td>
+										<td style="color:' . $fontColor . '">' . $row['status'] . '</td>
 										<td>' . $row['remarks'] . '</td>
 									</tr>';
 							}
@@ -71,59 +66,87 @@
 			</div>
 		</div>
 
-		<form class="row g-3 mx-5 my-5" action="" method="POST">
+
+		<?php
+
+		$sql = "SELECT * FROM student_details WHERE enrollment_no = ?";
+		$stmt = $st_conn->prepare($sql);
+		$stmt->bind_param("s", $enrollmentNo);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		if ($result->num_rows > 0) {
+			$row = $result->fetch_assoc();
+			$name = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
+			$branch = $row['branch'];
+		}
+
+		$sql = "SELECT * FROM hostel_student_details WHERE enrollment_no = ?";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("s", $enrollmentNo);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		if ($result->num_rows > 0) {
+			$row = $result->fetch_assoc();
+			$hostelName = $row['hostel_name'];
+			$roomNo = $row['room_no'];
+		}
+		?>
+
+		<form class="row g-3 mx-5 my-5" action="feesUploadAction.php" method="POST">
 			<h3 class="text-center mt-4 mb-2 text-primary">Fees Payment</h3>
 			<div class="col-md-4">
 				<label for="inputEnrollmentNo" class="form-label">Enrollment Number</label>
-				<input type="text" class="form-control" id="inputEnrollmentNo" disabled readonly>
+				<input type="text" class="form-control" name="enrollment-no" id="inputEnrollmentNo" value="<?php echo $enrollmentNo; ?>" readonly>
 			</div>
 			<div class="col-md-4">
 				<label for="inputHostelName" class="form-label">Hostel Name</label>
-				<input type="text" class="form-control" id="inputHostelName" disabled readonly>
+				<input type="text" class="form-control" name="hostel-name" id="inputHostelName" value="<?php echo $hostelName; ?>" readonly>
 			</div>
 			<div class="col-md-4">
 				<label for="inputRoomNumber" class="form-label">Room Number</label>
-				<input type="text" class="form-control" id="inputRoomNumber" disabled readonly>
+				<input type="text" class="form-control" name="room-no" id="inputRoomNumber" value="<?php echo $roomNo; ?>" readonly>
 			</div>
 			<div class="col-md-4">
 				<label for="inputName" class="form-label">Name</label>
-				<input type="text" class="form-control" id="inputName" disabled readonly>
+				<input type="text" class="form-control" name="name" id="inputName" value="<?php echo $name; ?>" readonly>
 			</div>
 			<div class="col-md-4">
 				<label for="inputBranch" class="form-label">Branch</label>
-				<input type="text" class="form-control" id="inputBranch" disabled readonly>
+				<input type="text" class="form-control" name="branch" id="inputBranch" value="<?php echo $branch; ?>" readonly>
 			</div>
 			<div class="col-md-4">
-				<label for="inputSem" class="form-label">Sem</label>
-				<input type="text" class="form-control" id="inputSem" disabled readonly>
+				<label for="inputSem" class="form-label">Semester</label>
+				<input type="number" class="form-control" name="semester" id="inputSem" required>
 			</div>
 			<div class="col-md-4">
 				<label for="inputDURefNo" class="form-label">DU Reference Number</label>
-				<input type="text" class="form-control" id="inputDURefNo">
+				<input type="text" class="form-control" name="DU-reference-no" id="inputDURefNo" required>
 			</div>
 			<div class="col-md-4">
 				<label for="dob" class="form-label">Payment Date</label>
-				<input type="date" name="paymentDate" class="form-control" id="inputPaymentDate" placeholder="">
+				<input type="date" name="payment-date" class="form-control" id="inputPaymentDate" required>
 			</div>
 			<div class="col-md-4">
-				<label for="inputAmount" class="form-label">Amount</label>
-				<input type="text" class="form-control" id="inputAmount" placeholder="1250" disabled readonly>
+				<label for="inputAmount" class="form-label">Amount Paid</label>
+				<input type="text" class="form-control" name="amount-paid" id="inputAmount" value="1250" readonly>
 			</div>
 			<div class="col-md-4">
 				<label for="inputAmountPenalty" class="form-label">Penalty Amount</label>
-				<input type="text" class="form-control" id="inputAmountPenalty">
+				<input type="number" class="form-control" name="penalty-amount" id="inputPenaltyAmount" required>
 			</div>
 			<div class="col-md-4">
 				<label for="formFile" class="form-label">Upload PDF</label>
 				<input class="form-control" type="file" id="formFile">
 			</div>
 			<div class="col-12 mb-4">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" name="submit-fees-btn" class="btn btn-primary">Submit</button>
 				<a href="request.php" class="mx-3 text-decoration-none">
 					Back
 				</a>
 			</div>
 		</form>
+		TODO : receipt <br>
+		TODO : Update and request again if Reject
 	</div>
 	<?php
 	include("../warden/footer.php");

@@ -22,7 +22,7 @@
 							<a class="nav-link text-black active" aria-current="page" href="#">Home</a>
 						</li>
 						<li class="nav-item mx-2">
-							<a class="nav-link" href="#">Login</a>
+							<a class="nav-link" href="./loginPage.php">Login</a>
 						</li>
 					</ul>
 				</div>

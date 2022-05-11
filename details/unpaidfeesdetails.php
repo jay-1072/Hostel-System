@@ -39,7 +39,6 @@ switch ($hostelName) {
 				<table class="table table-bordered table-hover table-striped mt-3 align-middle" id="myTable">
 					<thead>
 						<tr class="">
-							<th>Room Number</th>
 							<th>Enrollment Number</th>
 							<th>Name</th>
 							<th>Branch</th>
