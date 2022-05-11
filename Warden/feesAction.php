@@ -37,12 +37,13 @@ if ($result->num_rows > 0) {
 	$DUReferenceNo = $row['DU_reference_no'];
 	$amountPaid = $row['amount_paid'];
 	$penalty = $row['penalty'];
+	$path = " http://localhost/Hostel-system" . $row['receipt'];
 }
 
 
 // approvement or reject
 
-if(isset($_POST['fees-approval-btn'])) {
+if (isset($_POST['fees-approval-btn'])) {
 	$remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
 	$feesApproval = mysqli_real_escape_string($conn, $_POST['fees-approval-radio-btn']);
 
@@ -52,7 +53,7 @@ if(isset($_POST['fees-approval-btn'])) {
 		$stmt->bind_param("sssi", $remarks, $feesApproval, $enrollmentNo, $semester);
 		$stmt->execute();
 		header("location: request.php");
-	} catch(Exception $e) {
+	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
 }
@@ -112,8 +113,7 @@ if(isset($_POST['fees-approval-btn'])) {
 			<input type="text" class="form-control" id="inputAmountPenalty" value="<?php echo $penalty; ?>" readonly>
 		</div>
 		<div class="col-md-4">
-			<label for="formFile" class="form-label">Uploded PDF</label>
-			<input class="form-control" type="file" id="formFile">
+			<?php echo "<a href='$path' target='__blank' class='form-control btn btn-primary mt-4'>See here fee receipt</a>"; ?>
 		</div>
 		<div class="col-md-4 mt-5">
 			<div class="form-check form-check-inline">

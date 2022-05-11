@@ -54,10 +54,10 @@ $enrollmentNo = '180170119023';
 										<td>' . $row['payment_date'] . '</td>
 										<td>' . $row['amount_paid'] . '</td>
 										<td>' . $row['penalty'] . '</td>
-										<td>Receipt</td>
+										<td> <a href="http://localhost/Hostel-system' . $row['receipt'] . '" target="__blank">Click here</a></td>
 										<td style="color:' . $fontColor . '">' . $row['status'] . '</td>
 										<td>' . $row['remarks'] . '</td>
-									</tr>';
+										</tr>';
 							}
 						}
 						?>
@@ -92,7 +92,7 @@ $enrollmentNo = '180170119023';
 		}
 		?>
 
-		<form class="row g-3 mx-5 my-5" action="feesUploadAction.php" method="POST">
+		<form class="row g-3 mx-5 my-5" action="feesUploadAction.php" method="POST" enctype="multipart/form-data">
 			<h3 class="text-center mt-4 mb-2 text-primary">Fees Payment</h3>
 			<div class="col-md-4">
 				<label for="inputEnrollmentNo" class="form-label">Enrollment Number</label>
@@ -136,7 +136,7 @@ $enrollmentNo = '180170119023';
 			</div>
 			<div class="col-md-4">
 				<label for="formFile" class="form-label">Upload PDF</label>
-				<input class="form-control" type="file" id="formFile">
+				<input class="form-control" type="file" id="formFile" name='file' accept=".pdf" onchange="checkFile()" required>
 			</div>
 			<div class="col-12 mb-4">
 				<button type="submit" name="submit-fees-btn" class="btn btn-primary">Submit</button>
@@ -160,6 +160,15 @@ $enrollmentNo = '180170119023';
 	$(document).ready(function() {
 		$('#myTable').DataTable();
 	});
+
+	function checkFile() {
+		let file = document.getElementById('formFile').value;
+		let file_ext = file.split('.').pop();
+		if (file_ext !== 'pdf') {
+			alert('Please upload file in .pdf formate!!!');
+			document.getElementById('formFile').value = "";
+		}
+	}
 </script>
 
 </html>

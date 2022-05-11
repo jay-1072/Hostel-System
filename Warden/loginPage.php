@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-	echo "<script>history.go(-1)</script>";
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	header("location:Dashboard.php");
 }
 
 $error = "";
@@ -70,10 +70,10 @@ if (isset($_POST['login'])) {
 			<div class="card-body ">
 				<form method="POST" action=<?php echo $_SERVER['PHP_SELF']; ?>>
 					<h5 class="card-title text-center">Sign In</h5>
-	
+
 					<?php
-					if($error) {
-						echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">'.$error.'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					if ($error) {
+						echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $error . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 						</div>';
 					}
 					?>
