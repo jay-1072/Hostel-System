@@ -15,34 +15,9 @@
 <body>
 	<?php
 	include("header.php");
+	include("utilities/navbar.php");
 	?>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-		<div class="container-fluid">
-			<!--<a class="navbar-brand" href="#">Navbar</a>-->
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav mx-auto">
-					<li class="nav-item mx-2">
-						<a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-					</li>
-					<li class="nav-item mx-2">
-						<a class="nav-link" href="uploadDetails.php">Upload Student Data</a>
-					</li>
-					<li class="nav-item mx-2">
-						<a class="nav-link" href="request.php">Requests (0)</a>
-					</li>
-					<li class="nav-item mx-2">
-						<a class="nav-link" href="report.php">Report</a>
-					</li>
-					<li class="nav-item mx-2">
-						<a class="nav-link" href="../dbFiles/logout.php">Logout</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+
 	<div class="accordion" id="accordionPanelsStayOpenExample">
 		<!--<div class="accordion-item mt-4">
 					<h2 class="accordion-header" id="panelsStayOpen-headingOne">

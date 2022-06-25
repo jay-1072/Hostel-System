@@ -16,35 +16,8 @@ include("../dbConn.php");
 <body>
     <?php
     include("header.php");
+    include("utilities/navbar.php");
     ?>
-
-    <!-- navabar  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" aria-current="page" href="dashboard.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link active" href="uploadDetails.php">Upload Student Data</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="request.php">Requests (0)</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="report.php">Report</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="../dbFiles/logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <!-- body container -->
     <div class="p-4">
