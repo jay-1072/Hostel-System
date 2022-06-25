@@ -51,71 +51,26 @@ switch ($hostelName) {
 					<tbody>
 						<?php
 						include "../dbConn.php";
-						$sql1 = "SELECT * FROM student_details as sd JOIN fees ON sd.Enrollment_no=fees.enrollment_no AND sd.hostel_name=? ORDER BY fees.payment_date DESC";
-						$stmt = $conn->prepare($sql1);
-						$stmt->bind_param("s", $fullHostelName);
+						$sql = "SELECT * FROM hostel_student_details as hsd JOIN fees ON hsd.enrollment_no = fees.enrollment_no AND hsd.hostel_name = ? ORDER BY fees.payment_date DESC";
+						$stmt = $conn->prepare($sql);
+						$stmt->bind_param("s", $hostelName);
 						$stmt->execute();
 						$result = $stmt->get_result();
 						if ($result->num_rows > 0) {
 							while ($row = $result->fetch_assoc()) {
-
-								if($row['status']=='Not Applied' && $row['semester']==$row['Semester']) {
-									echo '<tr>
-										<td>' . $row['enrollment_no'] . '
-										</td>
-										<td>' . $row['first_name'] . '
-										</td>
-										<td>' . $row['branch'] . '
-										</td>
-										<td>' . $row['semester'] . '
-										</td>
-										<td>' . $row['course'] . '
-										</td>
-										<td>' . $row['student_mobile_no'] . '
-										</td>
-										<td>' . $row['student_email'] . '
-										</td>
-									</tr>';
-								}
-								else if($row['semester']!=$row['Semester']) {
-									$sql2 = "INSERT INTO `fees` (`enrollment_no`, `Semester`, `Hostel name`, `Amount paid`, `Penalty`, `payment_date`, `DU reference no`, `Receipt pdf`, `status`, `Remark`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-									$stmt = $conn->prepare($sql2);
-									$amount = 1270;
-									$penalty = null;
-									$payDate = null;
-									$duNo = null;
-									$receipt = null;
-									$status = 'Not Applied';
-									$remarks = null;
-									$stmt->bind_param("sisiisssss", $row['Enrollment_no'], $row['semester'], $row['hostel_name'], $amount, $penalty, $payDate, $duNo, $receipt, $status, $remarks);
-									$stmt->execute();
-								}
+								echo '<tr>
+									<th scope="row">' . $row['room_no'] . '</th>
+									<td>' . $row['enrollment_no'] . '</td>
+									<td>XYZ</td>
+									<td>IT</td>
+									<td>6</td>
+									<td>BE/ME</td>
+									<td>1112222111</td>
+									<td>aaaa@gmail.com</td>
+								</tr>';
 							}
 						}
-
-						$sql3 = "SELECT * FROM student_details as sd JOIN fees ON sd.Enrollment_no!=fees.enrollment_no AND sd.hostel_name=?";
-						$stmt = $conn->prepare($sql3);
-						$stmt->bind_param("s", $fullHostelName);
-						$stmt->execute();
-						$result = $stmt->get_result();
-
-						if ($result->num_rows > 0) {
-							while ($row = $result->fetch_assoc()) {
-								$sql4 = "INSERT INTO `fees` (`enrollment_no`, `Semester`, `Hostel name`, `Amount paid`, `Penalty`, `payment_date`, `DU reference no`, `Receipt pdf`, `status`, `Remark`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-								$stmt = $conn->prepare($sql4);
-								$amount = 1270;
-								$penalty = null;
-								$payDate = null;
-								$duNo = null;
-								$receipt = null;
-								$status = 'Not Applied';
-								$remarks = null;
-								$stmt->bind_param("sisiisssss", $row['Enrollment_no'], $row['semester'], $row['hostel_name'], $amount, $penalty, $payDate, $duNo, $receipt, $status, $remarks);
-								$stmt->execute();
-							}
-						}
-
-					?>
+						?>
 					</tbody>
 				</table>
 			</div>

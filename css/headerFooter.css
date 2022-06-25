@@ -1,0 +1,54 @@
+/*Header*/
+.top {
+	margin: 10px 20px 10px 20px;
+}
+
+.imgBx img {
+	height: 80px;
+	width: 80px;
+	float: left;
+}
+
+.cname h1, h2 {
+	float: left;
+	margin-left: 20px;
+}
+
+.cname h2 {
+	width: 70%;
+}
+
+/*Footer*/
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	color: white;
+	text-align: center;
+	padding: 20px;
+}
+
+.footer p {
+	font-size: 16x;
+}
+
+/*For header*/
+@media(max-width: 767px) {
+	h1 {
+		width: 80%;
+		font-size: 28px;
+	}
+}
+
+@media(max-width: 481px) {
+	h1 {
+		width: 60%;
+		font-size: 22px;
+	}
+
+	h2 {
+		font-size: 22px;
+	}
+}
