@@ -50,15 +50,29 @@ include("../dbConn.php");
                 $data = $spreadsheet->getActiveSheet()->toArray();
                 $data = array_slice($data, 1);
 
-                // create sql statement template
-                $sql = "INSERT INTO `hostel_student_details`(`enrollment_no`, `hostel_name`, `room_no`, `occupancy_date`, `release_date`) VALUES (?,?,?,'','')";
+                $sql = "select * from `hostel_student_details` where enrollment_no=?";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ssi", $enrollment_no, $_POST['hostel'], $room_no);
+                $stmt->bind_param("s", $enrollment);
 
                 foreach ($data as $row) {
-                    $enrollment_no = $row[6];
+                    $enrollment = $row[6];
                     $room_no = $row[14];
-                    $res = $stmt->execute();
+                    $stmt->execute();
+                    $stmt->store_result();
+                    if ($stmt->num_rows() == 0) {
+                        $sql1 = "INSERT INTO `hostel_student_details`(`enrollment_no`, `hostel_name`, `room_no`, `occupancy_date`, `release_date`) VALUES (?,?,?,'','')";
+                        $stmt1 = $conn->prepare($sql1);
+                        $stmt1->bind_param("ssi", $enrollment, $_POST['hostel'], $room_no);
+                        // $enrollment_no = $row[6];
+                        $stmt1->execute();
+                    } else {
+                        $sql2 = "UPDATE `hostel_student_details` set `hostel_name`=?, `room_no`=? WHERE enrollment_no = ?";
+                        $stmt2 = $conn->prepare($sql2);
+                        $stmt2->bind_param("sis", $_POST['hostel'], $room_no, $enrollment_no);
+                        // $enrollment_no2 = $row[6];
+                        // $room_no = $row[14];
+                        $stmt2->execute();
+                    }
                 }
 
                 echo "

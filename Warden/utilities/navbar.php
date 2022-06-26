@@ -30,6 +30,9 @@ $countRequest = $result->num_rows;
                     <a class="nav-link <?php echo ($filename == 'report.php') ? 'active' : ''; ?>" href="report.php">Report</a>
                 </li>
                 <li class="nav-item mx-2">
+                    <a class="nav-link <?php echo ($filename == 'release-student.php') ? 'active' : ''; ?>" href="release-student.php">Release Student</a>
+                </li>
+                <li class="nav-item mx-2">
                     <a class="nav-link" href="../dbFiles/logout.php">Logout</a>
                 </li>
             </ul>
