@@ -54,7 +54,7 @@ $enrollmentNo = '180170119023';
 										<td>' . $row['payment_date'] . '</td>
 										<td>' . $row['amount_paid'] . '</td>
 										<td>' . $row['penalty'] . '</td>
-										<td> <a href="http://localhost/Hostel-system' . $row['receipt'] . '" target="__blank">Click here</a></td>
+										<td> <a href="http://localhost/Hostel-System' . $row['receipt'] . '" target="__blank">Click here</a></td>
 										<td style="color:' . $fontColor . '">' . $row['status'] . '</td>
 										<td>' . $row['remarks'] . '</td>
 										</tr>';
@@ -78,6 +78,7 @@ $enrollmentNo = '180170119023';
 			$row = $result->fetch_assoc();
 			$name = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
 			$branch = $row['branch'];
+			$semester = $row['semester'];
 		}
 
 		$sql = "SELECT * FROM hostel_student_details WHERE enrollment_no = ?";
@@ -116,7 +117,7 @@ $enrollmentNo = '180170119023';
 			</div>
 			<div class="col-md-4">
 				<label for="inputSem" class="form-label">Semester</label>
-				<input type="number" class="form-control" name="semester" id="inputSem" required>
+				<input type="number" class="form-control" name="semester" value="<?php echo $semester; ?>" id="inputSem" readonly>
 			</div>
 			<div class="col-md-4">
 				<label for="inputDURefNo" class="form-label">DU Reference Number</label>
@@ -145,8 +146,6 @@ $enrollmentNo = '180170119023';
 				</a>
 			</div>
 		</form>
-		TODO : receipt <br>
-		TODO : Update and request again if Reject
 	</div>
 	<?php
 	include("../warden/footer.php");

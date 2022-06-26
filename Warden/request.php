@@ -84,7 +84,6 @@
 			</table>
 		</div>
 	</div>
-	<p>To do: when the warden is approve or reject the fees details it will be removed from here</p>
 	<?php
 	include("footer.php");
 	?>
