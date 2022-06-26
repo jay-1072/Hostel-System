@@ -19,13 +19,12 @@ if (isset($_POST['submit'])) {
 
 	if ($result->num_rows > 0) {
 		$row = $result->fetch_assoc();
-<<<<<<< HEAD
-		$headers = "From: ssiphostel2425@gmail.com\r\n";
-=======
-		$header = "From:ssiphostel2425@gmail.com \r\n";
->>>>>>> e55483b17f9d65f8898e375a552356d0b7f1420c
-
 		$encryptedEmail = openssl_encrypt($row['email'], $encryptionAlgo, $encryptionKey, 0, $initVector);
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+		// More headers
+		$headers .= 'From: ssiphostel2425@gmail.com' . "\r\n";
 
 		$message = "
 			<html>
@@ -34,18 +33,12 @@ if (isset($_POST['submit'])) {
 				</head>
 				<body>
 					<h1>Hello," . $row['name'] . "</h1><br>
-					<p><a href='localhost/Hostel-System/Warden/dbFiles/forget-password.php?id='$encryptedEmail'>Click here</a> to update your password</p>
+					<a href='http://localhost/Hostel-system/Warden/updatePassword.php?id=$encryptedEmail'>Click here</a> to update your password
 				</body>
 			</html>
 		";
 
-<<<<<<< HEAD
-		$res = mail($row['email'], "Update password", $message, $headers);
-
-		if ($res) {
-=======
-		if (mail($row['email'], "Update password", $message, "From:shubhamdusane2003@gmail.com")) {
->>>>>>> e55483b17f9d65f8898e375a552356d0b7f1420c
+		if (mail($row['email'], "Update password", $message, $headers)) {
 			$success = "Email has been sent on your mail id!";
 		} else {
 			$error = "Oops! Something went wrong!!!";
@@ -97,10 +90,10 @@ if (isset($_POST['submit'])) {
 
 					<?php
 					if ($error) {
-						echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $error . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						echo '<div class="text-center alert alert-danger alert-dismissible fade show" role="alert">' . $error . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 						</div>';
 					} else if ($success) {
-						echo '<div class="alert alert-success alert-dismissible fade show" role="alert">' . $success . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						echo '<div class="text-center alert alert-success alert-dismissible fade show" role="alert">' . $success . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 						</div>';
 					}
 					?>
