@@ -17,7 +17,10 @@ switch ($hostelName) {
 
 include '../dbConn.php'; 
  
-$sql = "SELECT * FROM hostel_student_details as hsd JOIN hostel_master AS hm ON hsd.room_no = hm.room_no AND hm.hostel_name = ? ORDER BY hm.room_no";
+$sql = "SELECT * FROM `hostel-portal`.hostel_student_details JOIN `hostel-portal`.hostel_master 
+ON `hostel-portal`.hostel_student_details.room_no = `hostel-portal`.hostel_master.room_no join `student-database`.student_details 
+on `hostel-portal`.hostel_student_details.enrollment_no = `student-database`.student_details.enrollment_no 
+AND `hostel-portal`.hostel_master.hostel_name = ? ORDER BY `hostel-portal`.hostel_master.room_no";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $hostelName);
 $stmt->execute();
@@ -28,11 +31,12 @@ if($result->num_rows > 0 ){
      
     $f = fopen('php://memory', 'w'); 
      
-    $fields = array('Room No', 'Enrollment No', 'Admission Date', 'Release Date'); 
+    $fields = array('Room No', 'Enrollment No', 'Name', 'Branch','Semester','Course','Admission Date', 'Release Date'); 
     fputcsv($f, $fields, $delimiter); 
      
     while($row = $result->fetch_assoc()){ 
-        $lineData = array($row['room_no'], $row['enrollment_no'], $row['occupancy_date'],$row['release_date']); 
+        $lineData = array($row['room_no'], $row['enrollment_no'], $row['first_name'], $row['branch'], 
+        $row['semester'],$row['course'],$row['occupancy_date'],$row['release_date']); 
         fputcsv($f, $lineData, $delimiter); 
     } 
      

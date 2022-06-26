@@ -12,6 +12,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Hostel Portal</title>
 	<link rel="stylesheet" type="text/css" href="../css/navbar.css">
+	<style>
+		.hostel-img{
+			height: 350px !important;
+			width: 100% !important;
+		}
+	</style>
 </head>
 
 <body>
@@ -36,7 +42,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		</div>
 	</nav>
 	<div class="container mx-auto my-auto">
-		<div id="carouselExampleDark" class="carousel carousel-dark slide mt-3 mb-3" data-bs-ride="carousel">
+		<!--<div id="carouselExampleDark" class="carousel carousel-dark slide mt-3 mb-3" data-bs-ride="carousel">
 			<div class="carousel-indicators">
 				<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 				<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -44,21 +50,21 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active" data-bs-interval="10000">
-					<img src="../images/hostelimages/1.png" class="d-block w-100" alt="...">
+					<img src="../images/1.jpeg" class="rounded float-start" alt="...">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>First slide label</h5>
 						<p>Some representative placeholder content for the first slide.</p>
 					</div>
 				</div>
 				<div class="carousel-item" data-bs-interval="2000">
-					<img src="../images/hostelimages/2.png" class="d-block w-100" alt="...">
+					<img src="../images/2.jpeg" class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Second slide label</h5>
 						<p>Some representative placeholder content for the second slide.</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="../images/hostelimages/3.png" class="d-block w-100" alt="...">
+					<img src="../images/3.jpeg" class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Third slide label</h5>
 						<p>Some representative placeholder content for the third slide.</p>
@@ -73,8 +79,30 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Next</span>
 			</button>
+		</div>-->
+		<div class="row mt-4">
+			<div class="col-md-4 col-sm-12 pb-3">
+				<div class="card h-100">
+					<img class="hostel-img" src="../images/1.jpeg">
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12 pb-3">
+				<div class="card h-100">
+					<img class="hostel-img" src="../images/2.jpeg">
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12 pb-3">
+				<div class="card h-100">
+					<img class="hostel-img" src="../images/3.jpeg">
+				</div>
+			</div>
+			<!-- <div class="col-md-6 col-sm-12 pb-3">
+				<div class="card h-100">
+					<img class="hostel-img" src="../images/4.jpeg">
+				</div>
+			</div> -->
 		</div>
-		<div class="row mb-5 mt-5">
+		<div class="row mb-5 mt-3">
 			<div class="col-sm-6">
 				<div class="card text-center border-dark">
 					<div class="card-header bg-light fw-bold fs-5">Boys Hostel Warden Details</div>

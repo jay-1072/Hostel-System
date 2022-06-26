@@ -44,7 +44,7 @@ switch ($hostelName) {
 						<th scope="col">Branch</th>
 						<th scope="col">Semester</th>
 						<th scope="col">Course</th>
-						<th scope="col">Addmission Date</th>
+						<th scope="col">Admission Date</th>
 						<th scope="col">Release Date</th>
 						<th scope="col">Action</th>
 					</tr>
@@ -52,7 +52,12 @@ switch ($hostelName) {
 				<tbody>
 					<?php
 					include "../dbConn.php";
-					$sql = "SELECT * FROM hostel_student_details as hsd JOIN hostel_master AS hm ON hsd.room_no = hm.room_no AND hm.hostel_name = ? ORDER BY hm.room_no";
+					//$sql = "SELECT * FROM hostel_student_details as hsd JOIN hostel_master AS hm ON hsd.room_no = hm.room_no AND hm.hostel_name = ? ORDER BY hm.room_no";
+					$sql = "SELECT * FROM `hostel-portal`.hostel_student_details JOIN `hostel-portal`.hostel_master 
+						ON `hostel-portal`.hostel_student_details.room_no = `hostel-portal`.hostel_master.room_no 
+						JOIN `student-database`.student_details 
+						ON `hostel-portal`.hostel_student_details.enrollment_no = `student-database`.student_details.enrollment_no 
+						AND `hostel-portal`.hostel_master.hostel_name = ? ORDER BY `hostel-portal`.hostel_master.room_no";
 					$stmt = $conn->prepare($sql);
 					$stmt->bind_param("s", $hostelName);
 					$stmt->execute();
@@ -67,10 +72,10 @@ switch ($hostelName) {
 							echo '<tr>
 									<th scope="row">' . $row['room_no'] . '</th>
 									<td>' . $row['enrollment_no'] . '</td>
-									<td>XYZ</td>
-									<td>IT</td>
-									<td>6</td>
-									<td>BE/ME</td>
+									<td>'. $row['first_name'] .'</td>
+									<td>' . $row['branch'] .'</td>
+									<td>' . $row['semester'] .'</td>
+									<td>' . $row['course'] .'</td>
 									<td>' . $row['occupancy_date'] . '</td>
 									<td>' . $row['release_date'] . '</td>
 									<td><a href="onestudentdetail.php?eno=' . $encryptedMessage . '" class="text-decoration-none">More</a></td>
@@ -81,7 +86,7 @@ switch ($hostelName) {
 				</tbody>
 			</table>
 		</div>
-		<div class="col-12 text-center">
+		<div class="col-12 text-center mb-5">
 		<?php
 			echo '<a href="../reportGenerate/studentsreport.php?name='. $hostelName .' ">';
 			echo '<button type="submit" name="report" class="btn btn-info">Generate Report</button>';
@@ -91,7 +96,7 @@ switch ($hostelName) {
 			</a>
 		</div>
 	</div>
-	<p>To do: Hostel name remaining</p>
+	
 	<?php
 	include("../warden/footer.php");
 	?>
