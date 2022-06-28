@@ -135,7 +135,8 @@ include "./auth.php";
 								}
 								echo '</tr>';
 
-								$sqlbh1ts = "SELECT SUM(no_of_occupancy) AS studenttotalbh1ts FROM hostel_master where hostel_name='BH-1'";
+								//$sqlbh1ts = "SELECT SUM(no_of_occupancy) AS studenttotalbh1ts FROM hostel_master where hostel_name='BH-1'";
+								$sqlbh1ts = "SELECT COUNT(enrollment_no) AS studenttotalbh1ts FROM hostel_student_details where hostel_name='BH-1'";
 								$resultbh1ts = mysqli_query($conn, $sqlbh1ts);
 								$valuesbh1ts = mysqli_fetch_assoc($resultbh1ts);
 								$num_rowsbh1ts = $valuesbh1ts['studenttotalbh1ts'];
@@ -200,7 +201,8 @@ include "./auth.php";
 								}
 								echo '</tr>';
 
-								$sqlbh2ts = "SELECT SUM(no_of_occupancy) AS studenttotalbh2ts FROM hostel_master where hostel_name='BH-2'";
+								//$sqlbh2ts = "SELECT SUM(no_of_occupancy) AS studenttotalbh2ts FROM hostel_master where hostel_name='BH-2'";
+								$sqlbh2ts = "SELECT COUNT(enrollment_no) AS studenttotalbh2ts FROM hostel_student_details where hostel_name='BH-2'";
 								$resultbh2ts = mysqli_query($conn, $sqlbh2ts);
 								$valuesbh2ts = mysqli_fetch_assoc($resultbh2ts);
 								$num_rowsbh2ts = $valuesbh2ts['studenttotalbh2ts'];
@@ -265,7 +267,8 @@ include "./auth.php";
 								}
 								echo '</tr>';
 
-								$sqlghts = "SELECT SUM(no_of_occupancy) AS studenttotalghts FROM hostel_master where hostel_name='GH'";
+								//$sqlghts = "SELECT SUM(no_of_occupancy) AS studenttotalghts FROM hostel_master where hostel_name='GH'";
+								$sqlghts = "SELECT COUNT(enrollment_no) AS studenttotalghts FROM hostel_student_details where hostel_name='GH'";
 								$resultghts = mysqli_query($conn, $sqlghts);
 								$valuesghts = mysqli_fetch_assoc($resultghts);
 								$num_rowsghts = $valuesghts['studenttotalghts'];
