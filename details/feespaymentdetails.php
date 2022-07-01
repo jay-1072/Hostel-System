@@ -57,7 +57,12 @@ switch ($hostelName) {
 					<tbody>
 						<?php
 						include "../dbConn.php";
-						$sql = "SELECT * FROM hostel_student_details as hsd JOIN fees ON hsd.enrollment_no = fees.enrollment_no AND hsd.hostel_name = ? ORDER BY fees.payment_date DESC";
+						//$sql = "SELECT * FROM hostel_student_details as hsd JOIN fees ON hsd.enrollment_no = fees.enrollment_no AND hsd.hostel_name = ? ORDER BY fees.payment_date DESC";
+						$sql = "SELECT * FROM `hostel-portal`.hostel_student_details JOIN `hostel-portal`.fees 
+							ON `hostel-portal`.hostel_student_details.enrollment_no = `hostel-portal`.fees.enrollment_no 
+							join `student-database`.student_details 
+							on `hostel-portal`.hostel_student_details.enrollment_no = `student-database`.student_details.enrollment_no
+							AND `hostel-portal`.hostel_student_details.hostel_name = ? ORDER BY `hostel-portal`.fees.payment_date DESC";
 						$stmt = $conn->prepare($sql);
 						$stmt->bind_param("s", $hostelName);
 						$stmt->execute();
@@ -67,15 +72,15 @@ switch ($hostelName) {
 								echo '<tr>
 									<th scope="row">' . $row['room_no'] . '</th>
 									<td>' . $row['enrollment_no'] . '</td>
-									<td>XYZ</td>
-									<td>IT</td>
+									<td>'. $row['first_name'] .'</td>
+									<td>'. $row['branch'] .'</td>
 									<td>' . $row['semester'] . '</td>
-									<td>BE/ME</td>
+									<td>'. $row['course'] .'</td>
 									<td>' . $row['DU_reference_no'] . '</td>
 									<td>' . $row['payment_date'] . '</td>
 									<td>' . $row['amount_paid'] . '</td>
 									<td>' . $row['penalty'] . '</td>
-									<td>Receipt</td>
+									<td>'. $row['receipt'] .'</td>
 									<td>' . $row['status'] . '</td>
 									<td>' . $row['remarks'] . '</td>
 								</tr>';
@@ -86,14 +91,17 @@ switch ($hostelName) {
 				</table>
 			</div>
 		</div>
-		<div class="col-12 text-center">
-			<button type="submit" class="btn btn-info">Generate Report</button>
+		<div class="col-12 text-center mb-5">
+		<?php
+			echo '<a href="../reportGenerate/feesreport.php?name='. $hostelName .' ">';
+			echo '<button type="submit" name="report" class="btn btn-info">Generate Report</button>';
+			echo '</a>' ?>
 			<a href="../warden/report.php" class="mx-3 text-decoration-none">
 				Back
 			</a>
 		</div>
 	</div>
-	<p>To do: Hostel name remaining</p>
+	
 	<?php
 	include("../warden/footer.php");
 	?>

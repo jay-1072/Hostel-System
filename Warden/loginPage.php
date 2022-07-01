@@ -56,7 +56,7 @@ if (isset($_POST['login'])) {
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item mx-2">
-						<a class="nav-link text-black" aria-current="page" href="#">Home</a>
+						<a class="nav-link text-black" aria-current="page" href="./home.php">Home</a>
 					</li>
 					<li class="nav-item mx-2">
 						<a class="nav-link active" href="#">Login</a>

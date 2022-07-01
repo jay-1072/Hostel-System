@@ -102,15 +102,20 @@ switch ($hostelName) {
 			</div>
 		</div>
 		<div class="col-12 text-center">
-			<button type="submit" class="btn btn-info">Generate Report</button>
+		<?php
+			echo '<a href="../reportGenerate/unpaidfeesreport.php?name='. $hostelName .' ">';
+			echo '<button type="submit" name="report" class="btn btn-info">Generate Report</button>';
+			echo '</a>' ?>
 			<a href="../warden/report.php" class="mx-3 text-decoration-none">
 				Back
 			</a>
 		</div>
 	</div>
+
 	<?php
 	include("../warden/footer.php");
 	?>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

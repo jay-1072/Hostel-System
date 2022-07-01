@@ -72,14 +72,17 @@ switch ($hostelName) {
 				</table>
 			</div>
 		</div>
-		<div class="col-12 text-center">
-			<button type="submit" class="btn btn-info">Generate Report</button>
+		<div class="col-12 text-center mb-5">
+		<?php
+			echo '<a href="../reportGenerate/vacantreport.php?name='. $hostelName .' ">';
+			echo '<button type="submit" name="report" class="btn btn-info">Generate Report</button>';
+			echo '</a>' ?>
 			<a href="../warden/report.php" class="mx-3 text-decoration-none">
 				Back
 			</a>
 		</div>
 	</div>
-	<p>To do: Hostel name remaining</p>
+	
 	<?php
 	include("../warden/footer.php");
 	?>
