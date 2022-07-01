@@ -17,6 +17,7 @@ switch ($hostelName) {
 
 include '../dbConn.php'; 
  
+try {
 $sql = "SELECT * FROM hostel_student_details JOIN hostel_master ON hostel_student_details.room_no = hostel_master.room_no join student_details 
 ON hostel_student_details.enrollment_no = student_details.enrollment_no AND hostel_master.hostel_name = ? ORDER BY hostel_master.room_no";
 $stmt = $conn->prepare($sql);
@@ -50,3 +51,6 @@ else{
     window.location.href = "../Warden/report.php";</script>';
 }
 exit;
+} catch (Exception $e) {
+    echo $e->getMessage();
+}

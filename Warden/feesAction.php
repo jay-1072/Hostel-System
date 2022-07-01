@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
 // approvement or reject
 
 if (isset($_POST['fees-approval-btn'])) {
-	$remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
+	$remarks = trim(mysqli_real_escape_string($conn, $_POST['remarks']));
 	$feesApproval = mysqli_real_escape_string($conn, $_POST['fees-approval-radio-btn']);
 
 	try {
@@ -137,7 +137,7 @@ if (isset($_POST['fees-approval-btn'])) {
 			</a>
 		</div>
 	</form>
-	<P>To do: After the form submit the page redirect to request.php and the notification will go to student if possible <br> Check the uplode file</P>
+	
 	<?php
 	include("footer.php");
 	?>

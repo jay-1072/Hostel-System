@@ -17,6 +17,7 @@ switch ($hostelName) {
 
 include '../dbConn.php'; 
  
+try {
 $sql = "SELECT * FROM hostel_student_details JOIN fees ON hostel_student_details.enrollment_no = fees.enrollment_no JOIN student_details ON hostel_student_details.enrollment_no = student_details.enrollment_no AND hostel_student_details.hostel_name = ? ORDER BY fees.payment_date DESC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $hostelName);
@@ -48,3 +49,6 @@ else{
     window.location.href = "../Warden/report.php";</script>';
 }
 exit;
+} catch(Exception $e) {
+    echo $e->getMessage();
+}

@@ -8,27 +8,31 @@ if (isset($_POST['submit'])) {
 
     if (isset($_GET['id'])) {
 
-        $email = openssl_decrypt($_GET['id'], $encryptionAlgo, $encryptionKey, 0, $initVector);
-        $sql = "select * from user_details where email=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $email);
-        if ($stmt->execute()) {
-            $stmt->store_result();
-            if ($stmt->num_rows() > 0) {
-                $sql = "UPDATE `user_details` set password=? where email=?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ss", $_POST['password'], $email);
-                if ($stmt->execute()) {
-                    $success = "Password has been updated!";
-                    header("location:/Hostel-system/Warden/");
+        try {
+            $email = openssl_decrypt($_GET['id'], $encryptionAlgo, $encryptionKey, 0, $initVector);
+            $sql = "select * from user_details where email=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $email);
+            if ($stmt->execute()) {
+                $stmt->store_result();
+                if ($stmt->num_rows() > 0) {
+                    $sql = "UPDATE `user_details` set password=? where email=?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ss", $_POST['password'], $email);
+                    if ($stmt->execute()) {
+                        $success = "Password has been updated!";
+                        header("location:/Hostel-system/Warden/");
+                    } else {
+                        $error = "Something went wrong...";
+                    }
                 } else {
-                    $error = "Something went wrong...";
+                    $error = "Invalid Token...";
                 }
             } else {
-                $error = "Invalid Token...";
+                $error = "Something went wrong...";
             }
-        } else {
-            $error = "Something went wrong...";
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     } else {
         $error = "Something went wrong...";

@@ -3,13 +3,13 @@
 include "../dbConn.php";
 
 if (isset($_POST['submit-fees-btn'])) {
-    $enrollmentNo = mysqli_real_escape_string($conn, $_POST['enrollment-no']);
-    $semester = mysqli_real_escape_string($conn, $_POST['semester']);
-    $hostelName = mysqli_real_escape_string($conn, $_POST['hostel-name']);
-    $amountPaid = mysqli_real_escape_string($conn, $_POST['amount-paid']);
-    $penalty = mysqli_real_escape_string($conn, $_POST['penalty-amount']);
-    $DUReferenceNo = mysqli_real_escape_string($conn, $_POST['DU-reference-no']);
-    $paymentDate = mysqli_real_escape_string($conn, $_POST['payment-date']);
+    $enrollmentNo = trim(mysqli_real_escape_string($conn, $_POST['enrollment-no']));
+    $semester = trim(mysqli_real_escape_string($conn, $_POST['semester']));
+    $hostelName = trim(mysqli_real_escape_string($conn, $_POST['hostel-name']));
+    $amountPaid = trim(mysqli_real_escape_string($conn, $_POST['amount-paid']));
+    $penalty = trim(mysqli_real_escape_string($conn, $_POST['penalty-amount']));
+    $DUReferenceNo = trim(mysqli_real_escape_string($conn, $_POST['DU-reference-no']));
+    $paymentDate = trim(mysqli_real_escape_string($conn, $_POST['payment-date']));
     $status = "Pending";
 
     //for add multipart-data

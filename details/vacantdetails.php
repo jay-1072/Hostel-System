@@ -53,19 +53,23 @@ switch ($hostelName) {
 					<tbody>
 						<?php
 						include "../dbConn.php";
-						$sql = "SELECT * FROM hostel_master WHERE hostel_name = ?";
-						$stmt = $conn->prepare($sql);
-						$stmt->bind_param("s", $hostelName);
-						$stmt->execute();
-						$result = $stmt->get_result();
-						if ($result->num_rows > 0) {
-							while ($row = $result->fetch_assoc()) {
-								$vacant = $row['no_of_occupancy'] - 3;
-								echo '<tr>
+						try {
+							$sql = "SELECT * FROM hostel_master WHERE hostel_name = ?";
+							$stmt = $conn->prepare($sql);
+							$stmt->bind_param("s", $hostelName);
+							$stmt->execute();
+							$result = $stmt->get_result();
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									$vacant = $row['no_of_occupancy'] - 3;
+									echo '<tr>
 										<th scope="row">' . $row['room_no'] . '</th>
 										<td>' . $vacant . '</td>
 									</tr>';
+								}
 							}
+						} catch (Exception $e) {
+							echo $e->getMessage();
 						}
 						?>
 					</tbody>
@@ -73,8 +77,8 @@ switch ($hostelName) {
 			</div>
 		</div>
 		<div class="col-12 text-center mb-5">
-		<?php
-			echo '<a href="../reportGenerate/vacantreport.php?name='. $hostelName .' ">';
+			<?php
+			echo '<a href="../reportGenerate/vacantreport.php?name=' . $hostelName . ' ">';
 			echo '<button type="submit" name="report" class="btn btn-info">Generate Report</button>';
 			echo '</a>' ?>
 			<a href="../warden/report.php" class="mx-3 text-decoration-none">
@@ -82,7 +86,7 @@ switch ($hostelName) {
 			</a>
 		</div>
 	</div>
-	
+
 	<?php
 	include("../warden/footer.php");
 	?>

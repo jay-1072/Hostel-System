@@ -11,24 +11,28 @@ if (isset($_POST['login'])) {
 	$username = trim($conn->real_escape_string($_POST['username']));
 	$password = trim($conn->real_escape_string($_POST['password']));
 
-	$sql = "SELECT * FROM user_details WHERE username=?";
-	$stmt = $conn->prepare($sql);
-	$stmt->bind_param("s", $username);
-	$stmt->execute();
-	$result = $stmt->get_result();
+	try {
+		$sql = "SELECT * FROM user_details WHERE username=?";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("s", $username);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-	if ($result->num_rows > 0) {
-		while ($row = $result->fetch_assoc()) {
-			if ($row['password'] == $password) {
-				$_SESSION['username'] = $username;
-				$_SESSION['loggedin'] = true;
-				header("location: ./Dashboard.php");
-			} else {
-				$error = "Wrong password";
+		if ($result->num_rows > 0) {
+			while ($row = $result->fetch_assoc()) {
+				if ($row['password'] == $password) {
+					$_SESSION['username'] = $username;
+					$_SESSION['loggedin'] = true;
+					header("location: ./Dashboard.php");
+				} else {
+					$error = "Wrong password";
+				}
 			}
+		} else {
+			$error = "Username doesn't exist";
 		}
-	} else {
-		$error = "Username doesn't exist";
+	} catch (Exception $e) {
+		echo $e->getMessage();
 	}
 }
 

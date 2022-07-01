@@ -58,7 +58,9 @@ switch ($hostelName) {
 						<?php
 						include "../dbConn.php";
 						//$sql = "SELECT * FROM hostel_student_details as hsd JOIN fees ON hsd.enrollment_no = fees.enrollment_no AND hsd.hostel_name = ? ORDER BY fees.payment_date DESC";
-						$sql = "SELECT * FROM hostel_student_details JOIN fees 
+						try {
+
+							$sql = "SELECT * FROM hostel_student_details JOIN fees 
 							ON hostel_student_details.enrollment_no = fees.enrollment_no JOIN student_details ON hostel_student_details.enrollment_no = student_details.enrollment_no
 							AND hostel_student_details.hostel_name = ? ORDER BY fees.payment_date DESC";
 						$stmt = $conn->prepare($sql);
@@ -68,8 +70,8 @@ switch ($hostelName) {
 						if ($result->num_rows > 0) {
 							while ($row = $result->fetch_assoc()) {
 								echo '<tr>
-									<th scope="row">' . $row['room_no'] . '</th>
-									<td>' . $row['enrollment_no'] . '</td>
+								<th scope="row">' . $row['room_no'] . '</th>
+								<td>' . $row['enrollment_no'] . '</td>
 									<td>'. $row['first_name'] .'</td>
 									<td>'. $row['branch'] .'</td>
 									<td>' . $row['semester'] . '</td>
@@ -81,8 +83,12 @@ switch ($hostelName) {
 									<td>'. $row['receipt'] .'</td>
 									<td>' . $row['status'] . '</td>
 									<td>' . $row['remarks'] . '</td>
-								</tr>';
+									</tr>';
+								}
 							}
+						}
+						catch(Exception $e) {
+							echo $e->getMessage();
 						}
 						?>
 					</tbody>

@@ -65,7 +65,7 @@ if (isset($_POST['submit']) && isset($_POST['enroll_numbers'])) {
                     </thead>
                     <tbody>
                         <?php
-
+                        
                         $sql = "SELECT * FROM hostel_student_details WHERE hostel_name=? AND release_date='0000-00-00'";
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param("s", $hostelName);

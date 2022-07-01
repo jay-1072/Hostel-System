@@ -17,6 +17,7 @@ switch ($hostelName) {
 
 include '../dbConn.php'; 
  
+try {
 $sql = "SELECT * FROM hostel_master WHERE hostel_name = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $hostelName);
@@ -48,3 +49,6 @@ else{
     window.location.href = "../Warden/report.php";</script>';
 }
 exit;
+} catch (Exception $e) {
+    echo $e->getMessage();
+}

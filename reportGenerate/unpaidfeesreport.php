@@ -17,6 +17,7 @@ switch ($hostelName) {
 
 include '../dbConn.php'; 
  
+try {
 $sql = "SELECT * FROM fees join hostel_student_details ON fees.enrollment_no = hostel_student_details.enrollment_no JOIN student_details ON hostel_student_details.enrollment_no = student_details.enrollment_no WHERE fees.status = 'Unpaid' AND fees.hostel_name = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $hostelName);
@@ -50,3 +51,6 @@ else{
     window.location.href = "../Warden/report.php";</script>';
 }
 exit;
+} catch (Exception $e) {
+    echo $e->getMessage();
+}

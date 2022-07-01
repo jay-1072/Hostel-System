@@ -39,16 +39,17 @@ $enrollmentNo = '180170119023';
 					<tbody>
 						<?php
 						include "../dbConn.php";
-						$sql = "SELECT * FROM fees WHERE enrollment_no = ?";
-						$stmt = $conn->prepare($sql);
-						$stmt->bind_param("s", $enrollmentNo);
-						$stmt->execute();
-						$result = $stmt->get_result();
-						if ($result->num_rows > 0) {
-							$fontColor;
-							while ($row = $result->fetch_assoc()) {
-								($row['status'] == 'Approved') ? $fontColor = 'green' : $fontColor = 'red';
-								echo '<tr>
+						try {
+							$sql = "SELECT * FROM fees WHERE enrollment_no = ?";
+							$stmt = $conn->prepare($sql);
+							$stmt->bind_param("s", $enrollmentNo);
+							$stmt->execute();
+							$result = $stmt->get_result();
+							if ($result->num_rows > 0) {
+								$fontColor;
+								while ($row = $result->fetch_assoc()) {
+									($row['status'] == 'Approved') ? $fontColor = 'green' : $fontColor = 'red';
+									echo '<tr>
 										<td>' . $row['semester'] . '</td>
 										<td>' . $row['DU_reference_no'] . '</td>
 										<td>' . $row['payment_date'] . '</td>
@@ -58,7 +59,10 @@ $enrollmentNo = '180170119023';
 										<td style="color:' . $fontColor . '">' . $row['status'] . '</td>
 										<td>' . $row['remarks'] . '</td>
 										</tr>';
+								}
 							}
+						} catch (Exception $e) {
+							echo $e->getMessage();
 						}
 						?>
 					</tbody>
@@ -69,28 +73,36 @@ $enrollmentNo = '180170119023';
 
 		<?php
 
-		$sql = "SELECT * FROM student_details WHERE enrollment_no = ?";
-		// $stmt = $st_conn->prepare($sql);
-		$stmt = $conn->prepare($sql);
-		$stmt->bind_param("s", $enrollmentNo);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			$row = $result->fetch_assoc();
-			$name = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
-			$branch = $row['branch'];
-			$semester = $row['semester'];
+		try {
+			$sql = "SELECT * FROM student_details WHERE enrollment_no = ?";
+			// $stmt = $st_conn->prepare($sql);
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param("s", $enrollmentNo);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			if ($result->num_rows > 0) {
+				$row = $result->fetch_assoc();
+				$name = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
+				$branch = $row['branch'];
+				$semester = $row['semester'];
+			}
+		} catch (Exception $e) {
+			echo $e->getMessage();
 		}
 
-		$sql = "SELECT * FROM hostel_student_details WHERE enrollment_no = ?";
-		$stmt = $conn->prepare($sql);
-		$stmt->bind_param("s", $enrollmentNo);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		if ($result->num_rows > 0) {
-			$row = $result->fetch_assoc();
-			$hostelName = $row['hostel_name'];
-			$roomNo = $row['room_no'];
+		try {
+			$sql = "SELECT * FROM hostel_student_details WHERE enrollment_no = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param("s", $enrollmentNo);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			if ($result->num_rows > 0) {
+				$row = $result->fetch_assoc();
+				$hostelName = $row['hostel_name'];
+				$roomNo = $row['room_no'];
+			}
+		} catch (Exception $e) {
+			echo $e->getMessage();
 		}
 		?>
 
@@ -122,7 +134,7 @@ $enrollmentNo = '180170119023';
 			</div>
 			<div class="col-md-4">
 				<label for="inputDURefNo" class="form-label">DU Reference Number</label>
-				<input type="text" class="form-control" name="DU-reference-no" id="inputDURefNo" required>
+				<input type="text" class="form-control" name="DU-reference-no" id="inputDURefNo" pattern="[a-zA-Z0-9\s]+" required>
 			</div>
 			<div class="col-md-4">
 				<label for="dob" class="form-label">Payment Date</label>
@@ -134,7 +146,7 @@ $enrollmentNo = '180170119023';
 			</div>
 			<div class="col-md-4">
 				<label for="inputAmountPenalty" class="form-label">Penalty Amount</label>
-				<input type="number" class="form-control" name="penalty-amount" id="inputPenaltyAmount" required>
+				<input type="number" class="form-control" min="0" name="penalty-amount" id="inputPenaltyAmount" required>
 			</div>
 			<div class="col-md-4">
 				<label for="formFile" class="form-label">Upload PDF</label>
@@ -165,10 +177,13 @@ $enrollmentNo = '180170119023';
 		let file = document.getElementById('formFile').value;
 		let file_ext = file.split('.').pop();
 		if (file_ext !== 'pdf') {
-			alert('Please upload file in .pdf formate!!!');
+			alert('Please upload file in .pdf format only!!!');
 			document.getElementById('formFile').value = "";
 		}
 	}
+
+	// to show the current or past dates only. Future dates will be disabled 
+	inputPaymentDate.max = new Date().toISOString().split("T")[0];
 </script>
 
 </html>

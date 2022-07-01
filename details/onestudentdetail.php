@@ -4,34 +4,40 @@ include "../dbConn.php";
 $eno = str_replace(" ", "+", $_GET['eno']);
 $enrollmentNo = openssl_decrypt($eno, $encryptionAlgo, $encryptionKey, 0, $initVector);
 
-$sql = "SELECT * FROM student_details WHERE enrollment_no = ?";
-// $stmt = $st_conn->prepare($sql);
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $enrollmentNo);
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-	while ($row = $result->fetch_assoc()) {
-		$name = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
-		$branch = $row['branch'];
-		$semester = $row['semester'];
-		$course = $row['course'];
-		$studentMobileNo = $row['student_mobile_no'];
-		$parentMobileNo = $row['parent_mobile_no'];
-		$studentEmail = $row['student_email'];
-		$parentEmail = $row['parent_email'];
-		$dob = $row['date_of_birth'];
-		$permanentAddress = $row['permanent_address'];
-		$city = $row['city'];
-		$pincode = $row['pincode'];
-		$district = $row['district'];
-		$state = $row['state'];
-		$nationality = $row['nationality'];
-		$category = $row['category'];
-		$admissionType = $row['admission_type'];
+try {
+
+	$sql = "SELECT * FROM student_details WHERE enrollment_no = ?";
+	// $stmt = $st_conn->prepare($sql);
+	$stmt = $conn->prepare($sql);
+	$stmt->bind_param("s", $enrollmentNo);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	if ($result->num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$name = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
+			$branch = $row['branch'];
+			$semester = $row['semester'];
+			$course = $row['course'];
+			$studentMobileNo = $row['student_mobile_no'];
+			$parentMobileNo = $row['parent_mobile_no'];
+			$studentEmail = $row['student_email'];
+			$parentEmail = $row['parent_email'];
+			$dob = $row['date_of_birth'];
+			$permanentAddress = $row['permanent_address'];
+			$city = $row['city'];
+			$pincode = $row['pincode'];
+			$district = $row['district'];
+			$state = $row['state'];
+			$nationality = $row['nationality'];
+			$category = $row['category'];
+			$admissionType = $row['admission_type'];
+		}
 	}
+} catch (Exception $e) {
+	echo $e->getMessage();
 }
 
+try {
 $sql = "SELECT * FROM hostel_student_details WHERE enrollment_no = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $enrollmentNo);
@@ -42,6 +48,9 @@ if ($result->num_rows > 0) {
 		$hostelName = $row['hostel_name'];
 		$roomNo = $row['room_no'];
 	}
+}
+} catch (Exception $e) {
+	echo $e->getMessage();
 }
 
 ?>

@@ -54,38 +54,39 @@ switch ($hostelName) {
 						<?php
 						include "../dbConn.php";
 
-						$sql = "SELECT * FROM fees WHERE status = 'Unpaid' AND hostel_name = ?";
-						$stmt = $conn->prepare($sql);
-						$stmt->bind_param("s", $hostelName);
-						$stmt->execute();
-						$result = $stmt->get_result();
-						if ($result->num_rows > 0) {
-							while ($row = $result->fetch_assoc()) {
-								$enrollment = $row['enrollment_no'];
+						try {
+							$sql = "SELECT * FROM fees WHERE status = 'Unpaid' AND hostel_name = ?";
+							$stmt = $conn->prepare($sql);
+							$stmt->bind_param("s", $hostelName);
+							$stmt->execute();
+							$result = $stmt->get_result();
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									$enrollment = $row['enrollment_no'];
 
-								$sql1 = "SELECT room_no FROM hostel_student_details WHERE enrollment_no = ?";
-								$stmt1 = $conn->prepare($sql1);
-								$stmt1->bind_param("s", $enrollment);
-								$stmt1->execute();
-								$result1 = $stmt1->get_result();
-								$row1 = $result1->fetch_assoc();
-								$roomNo = $row1['room_no'];
+									$sql1 = "SELECT room_no FROM hostel_student_details WHERE enrollment_no = ?";
+									$stmt1 = $conn->prepare($sql1);
+									$stmt1->bind_param("s", $enrollment);
+									$stmt1->execute();
+									$result1 = $stmt1->get_result();
+									$row1 = $result1->fetch_assoc();
+									$roomNo = $row1['room_no'];
 
-								$sql2 = "SELECT * FROM student_details WHERE enrollment_no = ?";
-								// $stmt2 = $st_conn->prepare($sql2);
-								$stmt2 = $conn->prepare($sql2);
-								$stmt2->bind_param("s", $enrollment);
-								$stmt2->execute();
-								$result2 = $stmt2->get_result();
-								$row2 = $result2->fetch_assoc();
-								$name = $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name'];
-								$branch = $row2['branch'];
-								$semester = $row2['semester'];
-								$course = $row2['course'];
-								$mobileNo = $row2['student_mobile_no'];
-								$email = $row2['student_email'];
+									$sql2 = "SELECT * FROM student_details WHERE enrollment_no = ?";
+									// $stmt2 = $st_conn->prepare($sql2);
+									$stmt2 = $conn->prepare($sql2);
+									$stmt2->bind_param("s", $enrollment);
+									$stmt2->execute();
+									$result2 = $stmt2->get_result();
+									$row2 = $result2->fetch_assoc();
+									$name = $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name'];
+									$branch = $row2['branch'];
+									$semester = $row2['semester'];
+									$course = $row2['course'];
+									$mobileNo = $row2['student_mobile_no'];
+									$email = $row2['student_email'];
 
-								echo '<tr>
+									echo '<tr>
 									<th scope="row">' . $roomNo . '</th>
 									<td>' . $enrollment . '</td>
 									<td>' . $name . '</td>
@@ -95,7 +96,10 @@ switch ($hostelName) {
 									<td>' . $mobileNo . '</td>
 									<td>' . $email . '</td>
 								</tr>';
+								}
 							}
+						} catch (Exception $e) {
+							echo $e->getMessage();
 						}
 						?>
 					</tbody>
@@ -103,8 +107,8 @@ switch ($hostelName) {
 			</div>
 		</div>
 		<div class="col-12 text-center">
-		<?php
-			echo '<a href="../reportGenerate/unpaidfeesreport.php?name='. $hostelName .' ">';
+			<?php
+			echo '<a href="../reportGenerate/unpaidfeesreport.php?name=' . $hostelName . ' ">';
 			echo '<button type="submit" name="report" class="btn btn-info">Generate Report</button>';
 			echo '</a>' ?>
 			<a href="../warden/report.php" class="mx-3 text-decoration-none">

@@ -53,38 +53,42 @@ switch ($hostelName) {
 					<?php
 					include "../dbConn.php";
 					//$sql = "SELECT * FROM hostel_student_details as hsd JOIN hostel_master AS hm ON hsd.room_no = hm.room_no AND hm.hostel_name = ? ORDER BY hm.room_no";
-					$sql = "SELECT * FROM hostel_student_details JOIN hostel_master	ON hostel_student_details.room_no = hostel_master.room_no JOIN student_details ON hostel_student_details.enrollment_no = student_details.enrollment_no AND hostel_master.hostel_name = ? ORDER BY hostel_master.room_no";
-					$stmt = $conn->prepare($sql);
-					$stmt->bind_param("s", $hostelName);
-					$stmt->execute();
-					$result = $stmt->get_result();
-					if ($result->num_rows > 0) {
-						while ($row = $result->fetch_assoc()) {
-							if ($row['release_date'] == '0000-00-00') {
-								$row['release_date'] = '-';
-							}
-							// encryption of enrollment to uniquely identify for onestudentdetails
-							$encryptedMessage = openssl_encrypt($row['enrollment_no'], $encryptionAlgo, $encryptionKey, 0, $initVector);
-							echo '<tr>
+					try {
+						$sql = "SELECT * FROM hostel_student_details JOIN hostel_master	ON hostel_student_details.room_no = hostel_master.room_no JOIN student_details ON hostel_student_details.enrollment_no = student_details.enrollment_no AND hostel_master.hostel_name = ? ORDER BY hostel_master.room_no";
+						$stmt = $conn->prepare($sql);
+						$stmt->bind_param("s", $hostelName);
+						$stmt->execute();
+						$result = $stmt->get_result();
+						if ($result->num_rows > 0) {
+							while ($row = $result->fetch_assoc()) {
+								if ($row['release_date'] == '0000-00-00') {
+									$row['release_date'] = '-';
+								}
+								// encryption of enrollment to uniquely identify for onestudentdetails
+								$encryptedMessage = openssl_encrypt($row['enrollment_no'], $encryptionAlgo, $encryptionKey, 0, $initVector);
+								echo '<tr>
 									<th scope="row">' . $row['room_no'] . '</th>
 									<td>' . $row['enrollment_no'] . '</td>
-									<td>'. $row['first_name'] .'</td>
-									<td>' . $row['branch'] .'</td>
-									<td>' . $row['semester'] .'</td>
-									<td>' . $row['course'] .'</td>
+									<td>' . $row['first_name'] . '</td>
+									<td>' . $row['branch'] . '</td>
+									<td>' . $row['semester'] . '</td>
+									<td>' . $row['course'] . '</td>
 									<td>' . $row['occupancy_date'] . '</td>
 									<td>' . $row['release_date'] . '</td>
 									<td><a href="onestudentdetail.php?eno=' . $encryptedMessage . '" class="text-decoration-none">More</a></td>
 								</tr>';
+							}
 						}
+					} catch (Exception $e) {
+						echo $e->getMessage();
 					}
 					?>
 				</tbody>
 			</table>
 		</div>
 		<div class="col-12 text-center mb-5">
-		<?php
-			echo '<a href="../reportGenerate/studentsreport.php?name='. $hostelName .' ">';
+			<?php
+			echo '<a href="../reportGenerate/studentsreport.php?name=' . $hostelName . ' ">';
 			echo '<button type="submit" name="report" class="btn btn-info">Generate Report</button>';
 			echo '</a>' ?>
 			<a href="../warden/report.php" class="mx-3 text-decoration-none">
@@ -92,7 +96,7 @@ switch ($hostelName) {
 			</a>
 		</div>
 	</div>
-	
+
 	<?php
 	include("../warden/footer.php");
 	?>
