@@ -18,7 +18,7 @@ $countRequest = $result->num_rows;
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item mx-2">
-                    <a class="nav-link <?php echo ($filename == 'dashboard.php') ? 'active' : ''; ?>" aria-current="page" href="dashboard.php">Dashboard</a>
+                    <a class="nav-link <?php echo ($filename == 'Dashboard.php') ? 'active' : ''; ?>" aria-current="page" href="dashboard.php">Dashboard</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link <?php echo ($filename == 'uploadDetails.php') ? 'active' : ''; ?>" href="uploadDetails.php">Upload Student Data</a>

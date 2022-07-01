@@ -33,7 +33,7 @@ if($result->num_rows > 0 ){
      
     $f = fopen('php://memory', 'w'); 
      
-    $fields = array('Room No', 'Enrollment No', 'First Name','Middle Name', 'Last Name', 'Branch', 'Semester', 'Course', 'Student Mobile No', 'Student Mobile No'); 
+    $fields = array('Room No', 'Enrollment No', 'First Name','Middle Name', 'Last Name', 'Branch', 'Semester', 'Course', 'Student Mobile No', 'Student Email'); 
     fputcsv($f, $fields, $delimiter); 
      
     while($row = $result->fetch_assoc()){ 
