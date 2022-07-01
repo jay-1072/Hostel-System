@@ -110,7 +110,6 @@ include("../dbConn.php");
         </form>
     </div>
 
-
     <!-- footer -->
     <?php
     include("footer.php");

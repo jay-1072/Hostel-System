@@ -56,7 +56,7 @@ if (isset($_POST['login'])) {
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item mx-2">
-						<a class="nav-link text-black" aria-current="page" href="./home.php">Home</a>
+						<a class="nav-link text-black" aria-current="page" href="./index.php">Home</a>
 					</li>
 					<li class="nav-item mx-2">
 						<a class="nav-link active" href="#">Login</a>
@@ -80,7 +80,7 @@ if (isset($_POST['login'])) {
 
 					<div class="textbox mx-2 my-2">
 						<input class="my-3 w-100 px-2 py-2 bg-white text-dark border border-1" type="text" name="username" placeholder="Username" required>
-						<input class="my-3 w-100 px-2 py-2 bg-white text-dark border border-1" type="text" name="password" placeholder="Password" required>
+						<input class="my-3 w-100 px-2 py-2 bg-white text-dark border border-1" type="password" name="password" placeholder="Password" required>
 					</div>
 					<div class="loginbutton mx-2 my-2">
 						<input type="submit" style="background-color: #70a7ff;" class="fw-bold w-100 my-3 rounded-pill border-0 py-2" name="login" value="Login" class="button">

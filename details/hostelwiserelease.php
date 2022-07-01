@@ -76,7 +76,8 @@ if (isset($_POST['submit']) && isset($_POST['enroll_numbers'])) {
                             while ($row = $result->fetch_assoc()) {
 
                                 $newSql = "SELECT * FROM student_details WHERE enrollment_no =? and semester=8";
-                                $newStmt = $st_conn->prepare($newSql);
+                                // $newStmt = $st_conn->prepare($newSql);
+                                $newStmt = $conn->prepare($newSql);
                                 $newStmt->bind_param("s", $row['enrollment_no']);
                                 $newStmt->execute();
                                 $newResult = $newStmt->get_result();
@@ -95,7 +96,8 @@ if (isset($_POST['submit']) && isset($_POST['enroll_numbers'])) {
                                     }
                                 }
                             }
-                            $st_conn->close();
+                            $conn->close();
+                            // $st_conn->close();
                         }
 
                         if ($flag)

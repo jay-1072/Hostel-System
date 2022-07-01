@@ -16,7 +16,8 @@ if ($result->num_rows > 0) {
 }
 
 $sql = "SELECT * FROM student_details WHERE enrollment_no = ?";
-$stmt = $st_conn->prepare($sql);
+// $stmt = $st_conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $enrollmentNo);
 $stmt->execute();
 $result = $stmt->get_result();

@@ -17,11 +17,7 @@ switch ($hostelName) {
 
 include '../dbConn.php'; 
  
-$sql = "SELECT * FROM `hostel-portal`.fees join `hostel-portal`.hostel_student_details 
-    on `hostel-portal`.fees.enrollment_no = `hostel-portal`.hostel_student_details.enrollment_no 
-    join `student-database`.student_details 
-    on `hostel-portal`.hostel_student_details.enrollment_no = `student-database`.student_details.enrollment_no 
-    WHERE `hostel-portal`.fees.status = 'Unpaid' AND `hostel-portal`.fees.hostel_name = ?";
+$sql = "SELECT * FROM fees join hostel_student_details ON fees.enrollment_no = hostel_student_details.enrollment_no JOIN student_details ON hostel_student_details.enrollment_no = student_details.enrollment_no WHERE fees.status = 'Unpaid' AND fees.hostel_name = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $hostelName);
 $stmt->execute();

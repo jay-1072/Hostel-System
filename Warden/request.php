@@ -55,7 +55,8 @@
 							}
 
 							$sql2 = "SELECT * FROM student_details WHERE enrollment_no = ?";
-							$stmt2 = $st_conn->prepare($sql2);
+							// $stmt2 = $st_conn->prepare($sql2);
+							$stmt2 = $conn->prepare($sql2);
 							$stmt2->bind_param("s", $enrollmentNo);
 							$stmt2->execute();
 							$result2 = $stmt2->get_result();

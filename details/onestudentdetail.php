@@ -5,7 +5,8 @@ $eno = str_replace(" ", "+", $_GET['eno']);
 $enrollmentNo = openssl_decrypt($eno, $encryptionAlgo, $encryptionKey, 0, $initVector);
 
 $sql = "SELECT * FROM student_details WHERE enrollment_no = ?";
-$stmt = $st_conn->prepare($sql);
+// $stmt = $st_conn->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $enrollmentNo);
 $stmt->execute();
 $result = $stmt->get_result();
